@@ -39,7 +39,7 @@
  *
  * @return Any value from INT32_MIN to INT32_MAX.
  */
-int32_t NetworkInterfaceReceiveStub( NetworkContext_t * pNetworkContext,
+int32_t NetworkInterfaceReceiveStub( void * pNetworkContext,
                                      void * pBuffer,
                                      size_t bytesToRecv );
 
@@ -52,7 +52,7 @@ int32_t NetworkInterfaceReceiveStub( NetworkContext_t * pNetworkContext,
  *
  * @return Any value from INT32_MIN to INT32_MAX.
  */
-int32_t NetworkInterfaceSendStub( NetworkContext_t * pNetworkContext,
+int32_t NetworkInterfaceSendStub( void * pNetworkContext,
                                   const void * pBuffer,
                                   size_t bytesToSend );
 

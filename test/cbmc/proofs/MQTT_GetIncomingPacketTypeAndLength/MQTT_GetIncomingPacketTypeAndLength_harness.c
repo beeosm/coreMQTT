@@ -33,7 +33,7 @@ void harness()
     /* NetworkContext_t is an application defined network interface context. It
      * is passed through to the readFunc parameter of
      * MQTT_GetIncomingPacketTypeAndLength(). */
-    NetworkContext_t networkContext;
+    void * networkContext;
 
     /* MQTT_GetIncomingPacketTypeAndLength() will set only the remainingLength
      * field in the input MQTTPacketInfo_t structure. */

@@ -216,7 +216,7 @@ typedef struct NetworkContext NetworkContext_t;
  * has occurred.
  */
 /* @[define_transportrecv] */
-typedef int32_t ( * TransportRecv_t )( NetworkContext_t * pNetworkContext,
+typedef int32_t ( * TransportRecv_t )( void * pNetworkContext,
                                        void * pBuffer,
                                        size_t bytesToRecv );
 /* @[define_transportrecv] */
@@ -238,7 +238,7 @@ typedef int32_t ( * TransportRecv_t )( NetworkContext_t * pNetworkContext,
  * has occurred.
  */
 /* @[define_transportsend] */
-typedef int32_t ( * TransportSend_t )( NetworkContext_t * pNetworkContext,
+typedef int32_t ( * TransportSend_t )( void * pNetworkContext,
                                        const void * pBuffer,
                                        size_t bytesToSend );
 /* @[define_transportsend] */
@@ -252,7 +252,7 @@ typedef struct TransportInterface
 {
     TransportRecv_t recv;               /**< Transport receive interface. */
     TransportSend_t send;               /**< Transport send interface. */
-    NetworkContext_t * pNetworkContext; /**< Implementation-defined network context. */
+    void * pNetworkContext; /**< Implementation-defined network context. */
 } TransportInterface_t;
 /* @[define_transportinterface] */
 

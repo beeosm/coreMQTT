@@ -206,7 +206,7 @@ int suiteTearDown( int numFailures )
  * @brief Mock successful transport send, and write data into buffer for
  * verification.
  */
-static int32_t mockSend( NetworkContext_t * pNetworkContext,
+static int32_t mockSend( void * pNetworkContext,
                          const void * pMessage,
                          size_t bytesToSend )
 {
@@ -286,7 +286,7 @@ static uint32_t getTimeDummy( void )
  * @return Number of bytes sent; negative value on error;
  * 0 for timeout or 0 bytes sent.
  */
-static int32_t transportSendSuccess( NetworkContext_t * pNetworkContext,
+static int32_t transportSendSuccess( void * pNetworkContext,
                                      const void * pBuffer,
                                      size_t bytesToWrite )
 {
@@ -298,7 +298,7 @@ static int32_t transportSendSuccess( NetworkContext_t * pNetworkContext,
 /**
  * @brief Mocked failed transport send.
  */
-static int32_t transportSendFailure( NetworkContext_t * pNetworkContext,
+static int32_t transportSendFailure( void * pNetworkContext,
                                      const void * pBuffer,
                                      size_t bytesToWrite )
 {
@@ -311,7 +311,7 @@ static int32_t transportSendFailure( NetworkContext_t * pNetworkContext,
 /**
  * @brief Mocked transport send that always returns 0 bytes sent.
  */
-static int32_t transportSendNoBytes( NetworkContext_t * pNetworkContext,
+static int32_t transportSendNoBytes( void * pNetworkContext,
                                      const void * pBuffer,
                                      size_t bytesToWrite )
 {
@@ -324,7 +324,7 @@ static int32_t transportSendNoBytes( NetworkContext_t * pNetworkContext,
 /**
  * @brief Mocked transport send that succeeds then fails.
  */
-static int32_t transportSendSucceedThenFail( NetworkContext_t * pNetworkContext,
+static int32_t transportSendSucceedThenFail( void * pNetworkContext,
                                              const void * pMessage,
                                              size_t bytesToSend )
 {
@@ -352,7 +352,7 @@ static int32_t transportSendSucceedThenFail( NetworkContext_t * pNetworkContext,
  *
  * @return Number of bytes received; negative value on error.
  */
-static int32_t transportRecvSuccess( NetworkContext_t * pNetworkContext,
+static int32_t transportRecvSuccess( void * pNetworkContext,
                                      void * pBuffer,
                                      size_t bytesToRead )
 {
@@ -364,7 +364,7 @@ static int32_t transportRecvSuccess( NetworkContext_t * pNetworkContext,
 /**
  * @brief Mocked failed transport read.
  */
-static int32_t transportRecvFailure( NetworkContext_t * pNetworkContext,
+static int32_t transportRecvFailure( void * pNetworkContext,
                                      void * pBuffer,
                                      size_t bytesToRead )
 {
@@ -377,7 +377,7 @@ static int32_t transportRecvFailure( NetworkContext_t * pNetworkContext,
 /**
  * @brief Mocked transport reading one byte at a time.
  */
-static int32_t transportRecvOneByte( NetworkContext_t * pNetworkContext,
+static int32_t transportRecvOneByte( void * pNetworkContext,
                                      void * pBuffer,
                                      size_t bytesToRead )
 {
@@ -391,7 +391,7 @@ static int32_t transportRecvOneByte( NetworkContext_t * pNetworkContext,
  * @brief Mocked transport returning zero bytes to simulate reception
  * of no data over network.
  */
-static int32_t transportRecvNoData( NetworkContext_t * pNetworkContext,
+static int32_t transportRecvNoData( void * pNetworkContext,
                                     void * pBuffer,
                                     size_t bytesToRead )
 {
@@ -1411,7 +1411,7 @@ void test_MQTT_Disconnect( void )
     MQTTStatus_t status;
     uint8_t buffer[ 10 ];
     uint8_t * bufPtr = buffer;
-    NetworkContext_t networkContext;
+    void * networkContext;
     TransportInterface_t transport;
     MQTTFixedBuffer_t networkBuffer;
     size_t disconnectSize = 2;
